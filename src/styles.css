@@ -1,0 +1,49 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: snow;
+  border-style: solid;
+  border-width: 4px;
+  border-color: orange;
+  border-radius: 10px;
+  margin: 5vh 5vw;
+  padding: 15px;
+  height: 85vh;
+  color: black;
+  font-size: 2em;
+}
+.choice {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.answer {
+  flex: 1;
+  height: 100%;
+  margin: 10px;
+  font-size: 1.5em;
+}
+
+.nextbutton {
+  flex: 1;
+  position: relative;
+  top: 80%;
+  height: 3em;
+  width: 100%;
+  background-color: lightgreen;
+  border-style: none;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.break {
+  width: 80%;
+  height: 5px;
+  background-image: linear-gradient(to right, orange, red);
+  border-radius: 20px;
+}
