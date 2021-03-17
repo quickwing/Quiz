@@ -5,7 +5,7 @@ import Choice from "./Choice";
 import myData from "./myData";
 
 export default function App() {
-  const [out, setOut] = useState(0); // For framer motion
+  const [out, setOut] = useState(1); // For framer motion
   const [visi, setVisi] = useState(true); // to rerender
   const [num, setNum] = useState(1); //page number - internal router
   const [selected, setSelected] = useState(false); //passed as prop-> track selected item
@@ -22,9 +22,9 @@ export default function App() {
   };
   const next = (to) => {
     setTimeout(() => {
-      setOut(-1000);
+      setOut(0);
       setTimeout(() => {
-        setOut(0);
+        setOut(1);
         setVisi(false);
         setVisi(true);
         !isQuestion && (num < myData.totalQs ? setNum(num + 1) : setNum(99));
@@ -39,9 +39,9 @@ export default function App() {
     <div>
       {visi && (
         <motion.div
-          animate={{ y: out }}
-          initial={{ y: 1000 }}
-          transition={{ duration: 0.4, y: { type: "spring", stiffness: 80 } }}
+          animate={{ opacity: out }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="card">
             {isQuestion && num < 90 && (
@@ -55,9 +55,9 @@ export default function App() {
                 <div className="choice">
                   {pickedChoice ? "Bravo!" : selected ? "Wrong" : "Please pick"}
                 </div>
-                {myData[num].answers.map((ans) => (
+                {myData[num].answers.map((ans, index) => (
                   <Choice
-                    key={1}
+                    key={index}
                     answer={ans.answer}
                     tr={ans.tr}
                     selected={selected}
