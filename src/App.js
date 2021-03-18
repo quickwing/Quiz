@@ -7,7 +7,7 @@ import myData from "./myData";
 export default function App() {
   const [out, setOut] = useState(1); // For framer motion
   const [visi, setVisi] = useState(true); // to rerender
-  const [num, setNum] = useState(1); //page number - internal router
+  const [num, setNum] = useState(100); //page number - internal router
   const [selected, setSelected] = useState(false); //passed as prop-> track selected item
   const [pickedChoice, setPickedChoice] = useState(); // is picked answer true or false
   const [isQuestion, setIsQuestion] = useState(true); // current page is answer or question
@@ -53,7 +53,11 @@ export default function App() {
                 </h2>
                 <div className="break"></div>
                 <div className="choice">
-                  {pickedChoice ? "Bravo!" : selected ? "Wrong" : "Please pick"}
+                  {pickedChoice
+                    ? "Correct!"
+                    : selected
+                    ? "Wrong"
+                    : "Please pick"}
                 </div>
                 {myData[num].answers.map((ans, index) => (
                   <Choice
@@ -78,13 +82,26 @@ export default function App() {
               </div>
             )}
             {num === 99 && (
-              <div>
-                Final page: your score is {(score / myData.totalQs) * 100}%{" "}
-                <br />
-                You selected: <br />
-                {answers.map((answer) => (
-                  <div>{answer}</div>
-                ))}
+              <div class="result">
+                Your score is {(score / myData.totalQs) * 100}%{" "}
+              </div>
+            )}
+            {num === 100 && (
+              <div
+                onClick={() => {
+                  setTimeout(() => {
+                    setOut(0);
+                    setTimeout(() => {
+                      setOut(1);
+                      setVisi(false);
+                      setVisi(true);
+                      setNum(1);
+                      setIsQuestion(true);
+                    }, 400);
+                  }, 400);
+                }}
+              >
+                start
               </div>
             )}
           </div>
